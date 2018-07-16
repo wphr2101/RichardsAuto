@@ -14,6 +14,8 @@ namespace RichardsAuto.Models
         public string Text { get; set; }
 
         public int? ServiceId { get; set; }
+        public string CustomerId { get; set; }
+
         public string ActionParameters
         {
             get
@@ -22,6 +24,10 @@ namespace RichardsAuto.Models
                 if (ServiceId != 0 && ServiceId != null)
                 {
                     param.Append(String.Format("{0}", ServiceId));
+                }
+                if (CustomerId != null && CustomerId.Length > 0)
+                {
+                    param.Append(String.Format("{0}", CustomerId));
                 }
 
                 return param.ToString().Substring(0, param.Length);
