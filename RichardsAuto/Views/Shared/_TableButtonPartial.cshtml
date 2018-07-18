@@ -5,20 +5,22 @@
 <td style="width:150px;">
     <div class="btn-group" role="group">
         @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial {
-           Action = "Edit",
-           ButtonType = "btn-primary",
-           Glyph = "pencil",
-           Text = "Edit",
-           ServiceId = Model.ServiceId,
-           CustomerId = Model.CustomerId
+            Action = "Edit",
+            ButtonType = "btn-primary",
+            Glyph = "pencil",
+            Text = "Edit",
+            ServiceId = Model.ServiceId,
+            CustomerId = Model.CustomerId,
+            CarId = Model.CarId
         })
         @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial {
-           Action = "Details",
-           ButtonType = "btn-success",
-           Glyph = "list",
-           Text = "Detail Button",
-           ServiceId = Model.ServiceId,
-           CustomerId = Model.CustomerId
+            Action = "Details",
+            ButtonType = "btn-success",
+            Glyph = "list",
+            Text = "Detail Button",
+            ServiceId = Model.ServiceId,
+            CustomerId = Model.CustomerId,
+            CarId = Model.CarId
         })
         @Html.Partial("_IndividualButtonPartial", new IndividualButtonPartial {
            Action = "Delete",
@@ -26,7 +28,8 @@
            Glyph = "trash",
            Text = "Delete Button",
            ServiceId = Model.ServiceId,
-           CustomerId = Model.CustomerId
+           CustomerId = Model.CustomerId,
+           CarId = Model.CarId
         })
     </div>
 </td>
