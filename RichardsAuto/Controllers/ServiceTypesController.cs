@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RichardsAuto.Data;
 using RichardsAuto.Models;
+using RichardsAuto.Utility;
 
 namespace RichardsAuto.Controllers
 {
+    [Authorize(Roles = SD.AdminEndUser)]
     public class ServiceTypesController : Controller
     {
         private readonly ApplicationDbContext _db;

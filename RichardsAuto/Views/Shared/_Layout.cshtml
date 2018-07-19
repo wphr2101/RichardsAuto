@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using RichardsAuto.Utility
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -30,9 +32,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Users" asp-action="Index">Users</a></li>
+                    @if (User.IsInRole(SD.AdminEndUser))
+                    {
+                        <li><a asp-area="" asp-controller="Users" asp-action="Index">Users</a></li>
+                    }
                     <li><a asp-area="" asp-controller="Cars" asp-action="Index">Cars</a></li>
-                    <li><a asp-area="" asp-controller="ServiceTypes" asp-action="Index">Service Types</a></li>
+                    @if (User.IsInRole(SD.AdminEndUser))
+                    {
+                        <li><a asp-area="" asp-controller="ServiceTypes" asp-action="Index">Service Types</a></li>
+                    }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -41,11 +49,12 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; 2018 - RichardsAuto</p>
-        </footer>
     </div>
-
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">&copy; 2018 - RichardsAuto</p>
+        </div>        
+    </footer>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RichardsAuto.Data;
 using RichardsAuto.Models;
+using RichardsAuto.Utility;
 using RichardsAuto.ViewModel;
 
 namespace RichardsAuto.Controllers
@@ -19,6 +21,7 @@ namespace RichardsAuto.Controllers
             _db = db;
         }
 
+        [Authorize]
         public IActionResult Index(int carId)
         {
             var car = _db.Cars.FirstOrDefault(c => c.Id == carId);
@@ -37,6 +40,7 @@ namespace RichardsAuto.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = SD.AdminEndUser)]
         // GET : Services/Create
         public IActionResult Create(int carId)
         {
@@ -56,6 +60,7 @@ namespace RichardsAuto.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = SD.AdminEndUser)]
         // POST : Services/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -85,8 +90,8 @@ namespace RichardsAuto.Controllers
             return View(newModel);
         }
 
+        [Authorize(Roles = SD.AdminEndUser)]
         // GET : Delete
-
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -103,6 +108,7 @@ namespace RichardsAuto.Controllers
             return View(service);
         }
 
+        [Authorize(Roles = SD.AdminEndUser)]
         // POST : Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

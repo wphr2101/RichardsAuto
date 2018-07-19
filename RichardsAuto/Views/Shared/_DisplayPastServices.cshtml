@@ -1,4 +1,5 @@
 ﻿@model RichardsAuto.ViewModel.CarAndServicesViewModel
+@using RichardsAuto.Utility
 
 <div>
     <table class="table table-condensed table-hover">
@@ -39,7 +40,7 @@
                 @Html.DisplayFor(m => item.ServiceType.Name)
             </td>
             <td>
-                @if (item.DateAdded.Date == DateTime.Now.Date)
+                @if (item.DateAdded.Date == DateTime.Now.Date && User.IsInRole(SD.AdminEndUser))
                 {
                     @Html.Partial("_IndividualButtonPartial", 
                                     new IndividualButtonPartial { 
